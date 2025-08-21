@@ -34,13 +34,13 @@ class EquipmentController extends Controller
 
 //     // $zonename = $req->zone;
 //     // $zoneEmail = NotirepairRepository::getemailZone($zonename);
-//     // $zoneData = $req->zone; 
-        
+//     // $zoneData = $req->zone;
+
 //     // $emailZone = null;
 //     // if ($zoneData) {
 //     //     // 3. Decode the JSON string to get a PHP object.
 //     //     $zoneObject = json_decode($zoneData);
-        
+
 //     //     // 4. Check if the object and its email property exist.
 //     //     if ($zoneObject && isset($zoneObject->email)) {
 //     //         $emailZone = $zoneObject->email;
@@ -62,6 +62,8 @@ public static function ShowAllEquipment(Request $req)
     //เดิม
     $branchmail = MastbranchRepository::getallBranchEmail();
     $branch = $branchmail->email;
+    //เพิ่ม
+    $branchname = $req->branch;
 
 //ใหม่
     // $branchmail = MastbranchRepository::getallBranchEmail();
@@ -84,7 +86,7 @@ public static function ShowAllEquipment(Request $req)
     // $branch = $branchInfo->email;
     // $branchname = $branchInfo->Location;
     $emailRepair = EquipmentTypeRepository::getEmailRepair($req->category);
-  
+
 
 
 
@@ -98,18 +100,28 @@ public static function ShowAllEquipment(Request $req)
     $zoneInfo = NotirepairRepository::getZoneInfoByEmail($zone);
 
     $staffname = $zoneInfo->StaffName;
-    
+
+
+    //new step1
+    // $branchEmail = $req->branch; //ตรงกับ  select name="branch" ในหน้า repair
+    // $zoneEmail = $req->zone;
+
+//step2
+    $branchEmail = MastbranchRepository::findEmailByname($req->branch); // ดึงอีเมลของสาขาจากชื่อสาขา
+    $zoneEmail = NotirepairRepository::findZoneEmailByName($req->zone); // ดึงอีเมลของโซนจากชื่อโซน
+    $zonename = $req->zone; // ชื่อโซนที่ส่งมาจากฟอร์ม
+
     // $emailZone = NotirepairRepository::getNameandZoneEmail();
-    
+
     // dd($emailZone);
 
-    // $zone = $emailZone->email;  
+    // $zone = $emailZone->email;
 
     // dd($req->all());
     // dd($zone);
     //เดิม
-    return view('/repair2',compact('equipment','branch','emailRepair','zone','staffname'));
-   
+    return view('/repair2',compact('equipment','branch','emailRepair','zone','staffname','branchname','branchEmail','zoneEmail','zonename'));
+
 
     //ใหม่
     // return view('/repair2', compact('equipment', 'branchname', 'emailRepair', 'zone', 'staffname'));

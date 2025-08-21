@@ -56,7 +56,14 @@ class MastbranchRepository{
         return Mastbranchinfo::where('MBranchInfo_Code', $branchCode)
             ->value('email'); // ดึง email ของ branch
     }
-    
+
+    //new
+    public static function findEmailByname($branchname){
+        return Mastbranchinfo::where('Location','=',$branchname)
+        ->first()
+        ->email; // ดึงอีเมลของสาขาจากชื่อสาขา
+    }
+
     }
 
 ?>

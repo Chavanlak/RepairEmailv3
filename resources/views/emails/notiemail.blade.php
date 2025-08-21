@@ -23,7 +23,8 @@ Thank you for your purchase!
 {{-- Panel displaying branch name --}}
 @component('mail::panel')
 เมลสาขา: {{ $NotiData['branch'] }}
-{{-- เเจ้งซ่อมจากสาขา: {{ $NotiData['branchname'] }} --}}
+เเจ้งซ่อมจากสาขา: {{ $NotiData['branchname'] }}
+ผู้แจ้ง: {{ $NotiData['name'] }}
 @endcomponent
 
 {{-- Panel displaying zone name --}}

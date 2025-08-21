@@ -172,8 +172,8 @@ public static function saveNotiRepair(Request $req){
             //     'mime' => str_replace('image/', '', mime_content_type($realPath))
             // ];
         }
-        $zoneInfo = NotirepairRepository::getZoneInfoByEmail($req->email2);
-        $staffName = $zoneInfo->StaffName;
+        // $zoneInfo = NotirepairRepository::getZoneInfoByEmail($req->email2);
+        // $staffName = $zoneInfo->StaffName;
         // $branchInfo = MastbranchRepository::getBranchInfoByEmail($req->email1);
         // $branchname = $branchInfo ? $branchInfo->Location : 'ไม่ระบุสาขา';
         // $branch_email = $branchInfo ? $branchInfo->email : 'ไม่ระบุอีเมล';
@@ -181,7 +181,7 @@ public static function saveNotiRepair(Request $req){
         // $branchname = $branchInfo->Location;
         // $branchInfo = MastbranchRepository::getBranchInfoByEmail($req->email1);
         // $branchname = $branchInfo->Location;
-     
+
 $data = [
             'title'=>'เเจ้งซ่อมอุปกรณ์',
             // 'img' => $uploadedFiles,
@@ -190,13 +190,17 @@ $data = [
             // 'branchname'=>$req->branchname,
             // 'emailZone'=>$req->emailZone,
             // 'zonename'=>$req->zonename,
-            'branch'=>$req->branch,
+            'branch'=>$req->email1,
+            'branchname'=>$req->branch,
+            //branch มาจาก <input type="text" name="branch" value="{{ $branchname }}">
+            'name'=>$req->session()->get('staffname'),
             // 'branchname'=>$branchname,
-  
+
             //ใช้อันนี้
             // 'zone'=>$req->zone,
-            'zone'=>$req->zone,
-            'staffname' => $staffName,
+            'zone'=>$req->email2,
+            //zone มาจาก <input type="text" name="zone" value="{{ $zonename}}"> หน้าrepair2
+            'staffname' => $req->zone,
             'equipmentname'=>EquipmentRepository::getEquipmentnameByID($req->category)->equipmentName
 
         ];
@@ -227,7 +231,7 @@ $data = [
         //     $req->email2,
         //     $req->email3,
         // ];
-        
+
         // Mail::to($recipients)->send(new NotiMail($data));
         return view('email');
     }

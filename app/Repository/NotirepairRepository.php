@@ -46,6 +46,15 @@ class NotirepairRepository{
         $noti->save();
         return $noti;
     }
+    // public static function findZoneEmailByName($zonename){
+    //     return Zone::where('StaffName','=',$zonename)
+    //         ->first(['email']);
+    // }
+  public static function findZoneEmailByName($zonename){
+        return Zone::where('StaffName','=',$zonename)
+            ->first()
+            ->email;
+    }
 
 }
 

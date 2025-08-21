@@ -81,9 +81,9 @@
                         {{-- <input type="hidden" name="branchname" value="{{ $branchname }}"> --}}
                         {{-- <input type="hidden" name="zonename" value="{{ $zonename }}"> --}}
 
-                        <input type="hidden" name="branch" value="{{ $branch }}">
+                        <input type="text" name="branch" value="{{ $branchname }}">
                         {{-- <input type="hidden" name="branchname" value="{{ $branchname}}"> --}}
-                        <input type="hidden" name="zone" value="{{ $zone }}">
+                        <input type="text" name="zone" value="{{ $zonename}}">
 
                         {{-- <input type="hidden" name="name" value="{{ $name }}"> --}}
 
@@ -126,9 +126,9 @@
                                 <i class="mdi mdi-email-outline"></i> อีเมลสาขา
                             </label>
                             <!-- แสดงอีเมลที่ส่งมาจาก Controller โดยอัตโนมัติ -->
-                            <p class="form-control-plaintext">{{ $branch}}</p>
+                            <p class="form-control-plaintext">{{ $branchEmail}}</p>
                             <!-- ซ่อนค่าอีเมลไว้ใน hidden input เพื่อส่งข้อมูลไปกับฟอร์ม -->
-                            <input type="hidden" name="email1" value="{{ $branch}}">
+                            <input type="hidden" name="email1" value="{{ $branchEmail}}">
                         </div>
 
                         <!-- อีเมลโซน -->
@@ -149,9 +149,9 @@
                                 <i class="mdi mdi-email-multiple-outline"></i> อีเมลโซน
                             </label>
                             <!-- แสดงอีเมลที่ส่งมาจาก Controller โดยอัตโนมัติ -->
-                            <p class="form-control-plaintext">{{ $zone }}</p>
+                            <p class="form-control-plaintext">{{ $zoneEmail }}</p>
                             <!-- ซ่อนค่าอีเมลไว้ใน hidden input เพื่อส่งข้อมูลไปกับฟอร์ม -->
-                            <input type="hidden" name="email2" value="{{ $zone }}">
+                            <input type="hidden" name="email2" value="{{ $zoneEmail }}">
                         </div>
 
                         <!-- อีเมลแจ้งซ่อม -->
